@@ -30,6 +30,8 @@ import UserListScreen from './screens/admin/UserListScreen';
 import store from './store';
 import { Provider } from 'react-redux';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import { HelmetProvider } from 'react-helmet-async';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -73,9 +75,11 @@ const router = createBrowserRouter(
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
-    <PayPalScriptProvider deferLoading={true}>
-      <RouterProvider router={router} />
-    </PayPalScriptProvider>
-  </Provider>
+  <HelmetProvider>
+    <Provider store={store}>
+      <PayPalScriptProvider deferLoading={true}>
+        <RouterProvider router={router} />
+      </PayPalScriptProvider>
+    </Provider>
+  </HelmetProvider>
 )
