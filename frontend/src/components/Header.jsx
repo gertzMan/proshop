@@ -4,6 +4,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../slices/usersApiSlice';
+import { resetCart } from '../slices/cartSlice';
+
 import { logout } from '../slices/authSlice';
 import SearchBox from './SearchBox';
 
@@ -22,6 +24,7 @@ const Header = () => {
         try {
             await logoutApiCall().unwrap();
             dispatch(logout());
+            dispatch(resetCart()); // Add this line
             navigate('/login');
         } catch (err) {
             console.error(err);
